@@ -1,1 +1,14 @@
-[]
+import json
+
+def save_to_json():
+    with open('weather_data.json', 'w', encoding='utf-8') as f:
+        json.dump(records, f, ensure_ascii=False, indent=4)
+
+def load_from_json():
+    global records
+    try:
+        with open('weather_data.json', 'r', encoding='utf-8') as f:
+            records = json.load(f)
+        update_table()
+    except FileNotFoundError:
+        pass
